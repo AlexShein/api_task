@@ -5,14 +5,12 @@ ViewSets для отображения данных партнёров и тра
 
 from rest_framework import viewsets
 from rest_framework import mixins
+from rest_framework.generics import RetrieveAPIView
 from api_task.serializers import PartnerSerializer, TransactionSerializer
 from api_task.models import Partner, Transaction
 
 
-class PartnerViewSet(
-        mixins.RetrieveModelMixin,
-        mixins.CreateModelMixin,
-        viewsets.GenericViewSet):
+class PartnerViewSet(RetrieveAPIView):
     """
     API endpoint для просмотра баланса партнёров.
     """
@@ -21,9 +19,9 @@ class PartnerViewSet(
 
 
 class TransactionViewSet(
+        viewsets.GenericViewSet,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        viewsets.GenericViewSet,
         mixins.ListModelMixin):
     """
     API endpoint для просмотра и добавления транзакций партнёров.
