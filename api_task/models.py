@@ -8,10 +8,10 @@ from django.db import models
 
 class Partner(models.Model):
     """
-    Модель Партнёр содержит поля "название" и "дата создания"
+    Модель Партнёр, отображает доверенного партнёра компании
     """
     created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=100, default='')
+    name = models.CharField(max_length=100)
 
     class Meta:
         ordering = ('created',)
@@ -19,9 +19,7 @@ class Partner(models.Model):
 
 class Transaction(models.Model):
     """
-    Модель содержит поля "дата создания",
-    "значение" - сумма транзакции
-    "партнёр" - внешний ключ для связи сущности с сущностью "Партнёр"
+    Модель отражает изменения состояния счёта партнёра
     """
     created = models.DateTimeField(auto_now_add=True)
     value = models.DecimalField(max_digits=12, decimal_places=2)
